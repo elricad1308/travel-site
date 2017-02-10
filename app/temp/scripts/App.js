@@ -92,18 +92,23 @@ var MobileMenu = function () {
         _classCallCheck(this, MobileMenu);
 
         this.menuIcon = (0, _jquery2.default)('.site-header__menu-icon');
+        this.menuContent = (0, _jquery2.default)('.site-header__menu-content');
+        this.siteHeader = (0, _jquery2.default)('.site-header');
+
         this.events();
     }
 
     _createClass(MobileMenu, [{
         key: 'events',
         value: function events() {
-            this.menuIcon.click(this.toggleMenu);
+            this.menuIcon.click(this.toggleMenu.bind(this));
         }
     }, {
         key: 'toggleMenu',
         value: function toggleMenu() {
-            console.log('Hooray! The icon was clicked');
+            this.siteHeader.toggleClass('site-header--is-expanded');
+            this.menuContent.toggleClass('site-header__menu-content--is-visible');
+            this.menuIcon.toggleClass('site-header__menu-icon--close-x');
         }
     }]);
 
