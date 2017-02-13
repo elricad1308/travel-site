@@ -9,9 +9,11 @@ class StickyHeader {
         this.headerLinks = $('.primary-nav a');
         this.headerTrigger = $('.large-hero__title');
         this.pageSections = $('.page-section');
+        this.lazyImages = $('.lazyload');
         this.addSmoothScrolling();
         this.createHeaderWaypoint();
         this.createPageSectionWaypoints();
+        this.refreshWaypoints();
     }
 
     addSmoothScrolling() {
@@ -58,6 +60,13 @@ class StickyHeader {
                 },
                 offset: '-40%'
             });
+        });
+    }
+
+    refreshWaypoints() {
+     // this.lazyImages.load(function(){            // Before
+        this.lazyImages.on('load', function(){      // Now
+            Waypoint.refreshAll();
         });
     }
 }

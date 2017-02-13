@@ -11276,9 +11276,11 @@ var StickyHeader = function () {
         this.headerLinks = (0, _jquery2.default)('.primary-nav a');
         this.headerTrigger = (0, _jquery2.default)('.large-hero__title');
         this.pageSections = (0, _jquery2.default)('.page-section');
+        this.lazyImages = (0, _jquery2.default)('.lazyload');
         this.addSmoothScrolling();
         this.createHeaderWaypoint();
         this.createPageSectionWaypoints();
+        this.refreshWaypoints();
     }
 
     _createClass(StickyHeader, [{
@@ -11326,6 +11328,15 @@ var StickyHeader = function () {
                     },
                     offset: '-40%'
                 });
+            });
+        }
+    }, {
+        key: 'refreshWaypoints',
+        value: function refreshWaypoints() {
+            // this.lazyImages.load(function(){            // Before
+            this.lazyImages.on('load', function () {
+                // Now
+                Waypoint.refreshAll();
             });
         }
     }]);
